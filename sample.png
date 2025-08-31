@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <script>
+        const tree = {
+            a: 'ア', i: 'イ', u: 'ウ', e: 'エ', o: 'オ',
+            k: {
+                a: 'カ', i: 'キ', u: 'ク', e: 'ケ', o: 'コ',
+                y: { a: 'キャ', i: 'キィ', u: 'キュ', e: 'キェ', o: 'キョ' },
+            },
+            s: {
+                a: 'サ', i: 'シ', u: 'ス', e: 'セ', o: 'ソ',
+                h: { a: 'シャ', i: 'シ', u: 'シュ', e: 'シェ', o: 'ショ' },
+                y: { a: 'シャ', i: 'シィ', u: 'シュ', e: 'シェ', o: 'ショ' },
+            },
+            t: {
+                a: 'タ', i: 'チ', u: 'ツ', e: 'テ', o: 'ト',
+                h: { a: 'テャ', i: 'ティ', u: 'テュ', e: 'テェ', o: 'テョ' },
+                y: { a: 'チャ', i: 'チィ', u: 'チュ', e: 'チェ', o: 'チョ' },
+                s: { a: 'ツァ', i: 'ツィ', u: 'ツ', e: 'ツェ', o: 'ツォ' },
+            },
+            c: {
+                a: 'カ', i: 'シ', u: 'ク', e: 'セ', o: 'コ',
+                h: { a: 'チャ', i: 'チ', u: 'チュ', e: 'チェ', o: 'チョ' },
+                y: { a: 'チャ', i: 'チィ', u: 'チュ', e: 'チェ', o: 'チョ' },
+            },
+            q: {
+                a: 'クァ', i: 'クィ', u: 'ク', e: 'クェ', o: 'クォ',
+            },
+            n: {
+                a: 'ナ', i: 'ニ', u: 'ヌ', e: 'ネ', o: 'ノ', n: 'ン',
+                y: { a: 'ニャ', i: 'ニィ', u: 'ニュ', e: 'ニェ', o: 'ニョ' },
+            },
+            h: {
+                a: 'ハ', i: 'ヒ', u: 'フ', e: 'ヘ', o: 'ホ',
+                y: { a: 'ヒャ', i: 'ヒィ', u: 'ヒュ', e: 'ヒェ', o: 'ヒョ' },
+            },
+            f: {
+                a: 'ファ', i: 'フィ', u: 'フ', e: 'フェ', o: 'フォ',
+                y: { a: 'フャ', u: 'フュ', o: 'フョ' },
+            },
+            m: {
+                a: 'マ', i: 'ミ', u: 'ム', e: 'メ', o: 'モ',
+                y: { a: 'ミャ', i: 'ミィ', u: 'ミュ', e: 'ミェ', o: 'ミョ' },
+            },
+            y: { a: 'ヤ', i: 'イ', u: 'ユ', e: 'イェ', o: 'ヨ' },
+            r: {
+                a: 'ラ', i: 'リ', u: 'ル', e: 'レ', o: 'ロ',
+                y: { a: 'リャ', i: 'リィ', u: 'リュ', e: 'リェ', o: 'リョ' },
+            },
+            w: { a: 'ワ', i: 'ウィ', u: 'ウ', e: 'ウェ', o: 'ヲ' },
+            g: {
+                a: 'ガ', i: 'ギ', u: 'グ', e: 'ゲ', o: 'ゴ',
+                y: { a: 'ギャ', i: 'ギィ', u: 'ギュ', e: 'ギェ', o: 'ギョ' },
+            },
+            z: {
+                a: 'ザ', i: 'ジ', u: 'ズ', e: 'ゼ', o: 'ゾ',
+                y: { a: 'ジャ', i: 'ジィ', u: 'ジュ', e: 'ジェ', o: 'ジョ' },
+            },
+            j: {
+                a: 'ジャ', i: 'ジ', u: 'ジュ', e: 'ジェ', o: 'ジョ',
+                y: { a: 'ジャ', i: 'ジィ', u: 'ジュ', e: 'ジェ', o: 'ジョ' },
+            },
+            d: {
+                a: 'ダ', i: 'ヂ', u: 'ヅ', e: 'デ', o: 'ド',
+                h: { a: 'デャ', i: 'ディ', u: 'デュ', e: 'デェ', o: 'デョ' },
+                y: { a: 'ヂャ', i: 'ヂィ', u: 'ヂュ', e: 'ヂェ', o: 'ヂョ' },
+            },
+            b: {
+                a: 'バ', i: 'ビ', u: 'ブ', e: 'ベ', o: 'ボ',
+                y: { a: 'ビャ', i: 'ビィ', u: 'ビュ', e: 'ビェ', o: 'ビョ' },
+            },
+            v: {
+                a: 'ヴァ', i: 'ヴィ', u: 'ヴ', e: 'ヴェ', o: 'ヴォ',
+                y: { a: 'ヴャ', i: 'ヴィ', u: 'ヴュ', e: 'ヴェ', o: 'ヴョ' },
+            },
+            p: {
+                a: 'パ', i: 'ピ', u: 'プ', e: 'ペ', o: 'ポ',
+                y: { a: 'ピャ', i: 'ピィ', u: 'ピュ', e: 'ピェ', o: 'ピョ' },
+            },
+            x: {
+                a: 'ァ', i: 'ィ', u: 'ゥ', e: 'ェ', o: 'ォ',
+                y: {
+                    a: 'ャ', i: 'ィ', u: 'ュ', e: 'ェ', o: 'ョ',
+                },
+                t: {
+                    u: 'ッ',
+                    s: {
+                        u: 'ッ',
+                    },
+                },
+            },
+            l: {
+                a: 'ァ', i: 'ィ', u: 'ゥ', e: 'ェ', o: 'ォ',
+                y: {
+                    a: 'ャ', i: 'ィ', u: 'ュ', e: 'ェ', o: 'ョ',
+                },
+                t: {
+                    u: 'ッ',
+                    s: {
+                        u: 'ッ',
+                    },
+                },
+            },
+        };
+
+        function convertRomanToKana(original) {
+            const str = original.replace(/[Ａ-Ｚａ-ｚ]/, s => String.fromCharCode(s.charCodeAt(0) - 65248)).toLowerCase(); // 全角→半角→小文字
+            let result = '';
+            let tmp = '';
+            let index = 0;
+            const len = str.length;
+            let node = tree;
+            const push = (char, toRoot = true) => {
+                result += char;
+                tmp = '';
+                node = toRoot ? tree : node;
+            };
+            while (index < len) {
+                const char = str.charAt(index);
+                if (char.match(/[a-z]/)) { // 英数字以外は考慮しない
+                    if (char in node) {
+                        const next = node[char];
+                        if (typeof next === 'string') {
+                            push(next);
+                        } else {
+                            tmp += original.charAt(index);
+                            node = next;
+                        }
+                        index++;
+                        continue;
+                    }
+                    const prev = str.charAt(index - 1);
+                    if (prev && (prev === 'n' || prev === char)) { // 促音やnへの対応
+                        push(prev === 'n' ? 'ン' : 'ッ', false);
+                    }
+                    if (node !== tree && char in tree) { // 今のノードがルート以外だった場合、仕切り直してチェックする
+                        push(tmp);
+                        continue;
+                    }
+                }
+                push(tmp + char);
+                index++;
+            }
+            tmp = tmp.replace(/n$/, 'ン'); // 末尾のnは変換する
+            push(tmp);
+            return result;
+        }
+
+        document.addEventListener("DOMContentLoaded", (event) => {
+            // displog();
+            console.log("DOMContentLoaded !!!");
+            autokana2("kanji_1", "kana_1");
+            // autokana("kanji_2", "kana_2");
+        });
+
+        function displog() {
+            const format = (str, ...args) => {
+                let temp = str;
+                for (const [i, arg] of args.entries()) {
+                    // const regExp = new RegExp(`\\{${i}\\}`, 'g');
+                    // temp = temp.replace(regExp, JSON.stringify(arg));
+                    temp += JSON.stringify(arg) + ", ";
+                }
+                return temp;
+            }
+
+            const msgElem = document.getElementById("message");
+            const log = console.log;
+            console.log = function(baseObj, ...argObj) {
+                const flg = baseObj instanceof Object;
+                const pElem = document.createElement("p");
+                if (!flg) {
+                    log(format(baseObj, argObj));
+                    pElem.innerHTML = format(baseObj, argObj);
+                }
+                else {
+                    pElem.innerHTML = JSON.stringify(baseObj);
+                }
+                msgElem.append(pElem);
+            }
+        }
+
+    function autokana(element1, element2) {
+        var eleName = document.getElementById(element1);
+        var eleKana = document.getElementById(element2);
+        var eleKanaB = document.getElementById(element2 + "b");
+        var eleKanaC = document.getElementById(element2 + "c");
+
+        if (eleName == null || eleKana == null) { return };
+        var tmpArray,
+            tmpArray2 = "",
+            tmpArray3 = "",
+            diffs = [],
+            tmp_input = [],
+            alphabetPattern = /[A-Za-z\uFF21-\uFF3A\uFF41-\uFF5A]/,
+            numberPattern = /[0-9\uFF10-\uFF19]/,
+            hiraganaPattern = /[\u3041-\u3094]/,
+            katakanaPattern = /[\u30A1-\u30F4ï½¦-ï¾Ÿ]/,
+            symbolPattern = /[\u002D\uFF0D\u30FC]/,
+            key_ptn = [
+                "Space",
+                "Convert",
+                "Enter",
+                "Backspace",
+                "Delete"
+            ];
+        var press_key;
+        const prop = {
+            last_key: "",
+            last_keycode: -1,
+            meta_key: false,
+            ctrl_key: false,
+            composing: false,
+            iscomposing: false,
+            push_keys: [],
+            push_keys_composition: [],
+            keydown: false,
+            beforeinput: false,
+            input: false,
+        };
+
+        document.addEventListener("keydown", function (event) { press_key = event.code; });
+        eleName.addEventListener('beforeinput', function (event) {
+            console.log("event : %o", event);
+            console.log("event.data : %o", event.data);
+            console.log("event.keyCode : %o", event.keyCode);
+
+            // const evtDataValue = event.data ?? "";
+            // const eleKanaValue = eleKana.value;
+            // const evtDataArray = evtDataValue.split("");
+            // const eleKanaArray = eleKanaValue.split("");
+            // const maxLen = Math.max(evtDataArray.length, eleKanaArray.length);
+
+            // console.log("evtDataArray : %o", evtDataArray);
+            // console.log("eleKanaArray : %o", eleKanaArray);
+            // console.log("maxLen : %o", maxLen);
+
+            // let diffIndex = -1;
+            // for (let i = 0; i < maxLen; i++) {
+            //     if (evtDataArray[i] != eleKanaArray[i]) {
+            //         diffIndex = i;
+            //         break;
+            //     }
+            // }
+            // console.log("diffIndex : %o", diffIndex);
+
+            // const diffDataArray = evtDataArray.slice(diffIndex);
+            // const diffKanaArray = eleKanaArray.slice(diffIndex);
+
+            // console.log("diffDataArray : %o", diffDataArray);
+            // console.log("diffKanaArray : %o", diffKanaArray);
+
+            // checkVal(event);
+        });
+        eleName.addEventListener('input', function (event) { checkVal(event); });
+
+        let inputType = "";
+        eleName.addEventListener('beforeinput', function (event) {
+            console.log("<<<<< beforeinput >>>>>");
+            console.log("event : %o", event);
+            console.log("event.inputType : %o", event.inputType);
+            inputType = event.inputType;
+        });
+        eleName.addEventListener('compositionend', function (event) {
+            console.log("<<<<< compositionend >>>>>");
+            console.log("event : %o", event);
+        });
+
+        eleName.addEventListener('blur', function () { eleKana.dispatchEvent(new Event("change")); });
+        eleKana.addEventListener('change', function () { stateClear(1); });
+
+        // document.addEventListener("keydown", (event) => {
+        //     if (document.activeElement != eleName) {
+        //         return;
+        //     }
+        //     console.log("%c=== keydown !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     console.log("event.key : %o", event.key);
+        //     console.log("event.isComposing : %o", event.isComposing);
+        //     prop.last_key = event.key;
+        //     prop.last_keycode = event.keyCode;
+        //     prop.meta_key = event.metaKey;
+        //     prop.ctrl_key = event.ctrlKey;
+
+        //     if (!event.metaKey || !event.ctrlKey) {
+        //         if (event.key == null) {
+        //             //
+        //         }
+        //         else if (event.key.length == 1) {
+        //             prop.push_keys.push(event.key);
+        //         }
+        //     }
+        //     if (event.key == "Backspace" || event.key == "Delete") {
+        //         if (prop.push_keys.length > 0) {
+        //             prop.push_keys.pop();
+        //         }
+        //     }
+        //     if (event.key == "Enter" && event.isComposing) {
+        //         prop.composing = false;
+        //         prop.iscomposing = event.isComposing;
+        //     }
+
+
+        //     console.log("prop : %o", JSON.parse(JSON.stringify(prop)));
+
+        //     prop.keydown = true;
+        //     const allokEvent = new CustomEvent('allok', { detail: JSON.parse(JSON.stringify(prop)) });
+        //     eleName.dispatchEvent(allokEvent);
+        // });
+
+        // eleName.addEventListener("beforeinput", (event) => {
+        //     console.log("%c=== beforeinput !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     console.log("event.inputType : %o", event.inputType);
+        //     console.log("event.isComposing : %o", event.isComposing);
+        //     console.log("event.data : %o", event.data);
+        //     console.log("event.target.value : %o", event.target.value);
+
+        //     // const curStr = event.target.value;
+        //     // const nextStr = event.data ? event.data : "";
+        //     // console.log(check(curStr, nextStr));
+
+        //     if (event.inputType == "insertFromPaste") {
+        //         const array = event.data ? event.data.split("") : [""];
+        //         prop.push_keys_composition = array;
+        //         prop.push_keys = [...array];
+        //     }
+
+        //     if (event.isComposing) {
+        //         const array = event.data ? event.data.split("") : [""];
+        //         prop.push_keys_composition = array;
+        //         // prop.push_keys = array;
+        //     }
+        //     prop.beforeinput = true;
+        //     const allokEvent = new CustomEvent('allok', { detail: JSON.parse(JSON.stringify(prop)) });
+        //     eleName.dispatchEvent(allokEvent);
+        // });
+        // eleName.addEventListener("input", (event) => {
+        //     console.log("%c=== input !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     console.log("event.inputType : %o", event.inputType);
+        //     console.log("event.isComposing : %o", event.isComposing);
+
+        //     prop.iscomposing = event.isComposing;
+        //     prop.input = true;
+        //     const allokEvent = new CustomEvent('allok', { detail: JSON.parse(JSON.stringify(prop)) });
+        //     eleName.dispatchEvent(allokEvent);
+        // });
+        // eleName.addEventListener("compositionstart", (event) => {
+        //     console.log("%c=== compositionstart !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     prop.composing = true;
+        // });
+        // eleName.addEventListener("compositionupdate", (event) => {
+        //     console.log("%c=== compositionupdate !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     prop.composing = true;
+        // });
+        // eleName.addEventListener("compositionend", (event) => {
+        //     console.log("%c=== compositionend !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     prop.composing = false;
+        //     console.log("prop: %o", prop);
+        //     console.log("keydown : %o, beforeinput : %o, input : %o", prop.keydown, prop.beforeinput, prop.input);
+        //     if (!prop.keydown && !prop.beforeinput && !prop.input) {
+        //         propReset();
+        //     }
+        // });
+        // eleName.addEventListener("blur", (event) => {
+        //     console.log("%c=== blur !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     propReset();
+        // });
+
+        // eleName.addEventListener("allok", (event) => {
+        //     const detail = event.detail;
+        //     console.log("%c=== allok !!!", "color: green;");
+        //     console.log("event : %o", event);
+        //     console.log("event.detail : %o", detail);
+        //     console.log("keydown : %o, beforeinput : %o, input : %o", detail.keydown, detail.beforeinput, detail.input);
+        //     console.log("judge : %o", detail.keydown && detail.beforeinput && detail.input);
+        //     if (detail.keydown
+        //         && detail.beforeinput
+        //         && detail.input) {
+
+        //         console.log("===== all ok =================================================");
+        //         prop.keydown = false;
+        //         prop.beforeinput = false;
+        //         prop.input = false;
+        //         console.log("===== detail : %o", detail);
+        //         console.log("===== prop : %o", prop);
+
+        //         if (detail.iscomposing && detail.last_key == "Enter") {
+        //             detail.composing = false;
+        //         }
+
+        //         toB(detail);
+
+        //         if (detail.meta_key || detail.ctrl_key) {
+        //             detail.composing = false;
+        //         }
+
+
+        //         if (detail.iscomposing && detail.last_key == "Enter") {
+        //             propReset();
+        //         }
+
+        //         if (!detail.iscomposing || !detail.composing) {
+        //             propReset();
+        //         }
+        //     }
+
+        //     console.log("last_key : %o, detail.push_keys.length : %o", detail.last_key, detail.push_keys.length);
+        //     console.log("judge2 : %o", detail.last_key == "Enter" && detail.push_keys.length == 0);
+        //     if (detail.last_key == "Enter"
+        //         && detail.push_keys.length == 0) {
+        //         propReset();
+        //     }
+        // });
+
+        // let base = "";
+        // function toB(detail) {
+        //     console.log("===== toB =======================================================");
+        //     console.log("===== detail : %o", detail);
+        //     console.log("===== base : %o", base);
+        //     const last_key = detail.last_key;
+        //     const push_keys = detail.push_keys;
+        //     const push_keys_composition = detail.push_keys_composition;
+        //     const meta_key = detail.meta_key;
+        //     const ctrl_key = detail.ctrl_key;
+        //     const composing = detail.composing;
+        //     const iscomposing = detail.iscomposing;
+
+        //     console.log("===== last_key : %o", last_key);
+        //     console.log("===== push_keys : %o", push_keys);
+        //     console.log("===== push_keys_composition : %o", push_keys_composition);
+        //     console.log("===== meta_key : %o", meta_key);
+        //     console.log("===== ctrl_key : %o", ctrl_key);
+        //     console.log("===== composing : %o", composing);
+        //     console.log("===== iscomposing : %o", iscomposing);
+
+        //     if (ctrl_key) {
+        //         console.log("===== 　get base : %o", base);
+        //         return;
+        //     }
+
+        //     if (last_key == "Backspace" || last_key == "Delete") {
+        //         if (push_keys.length == 0) {
+        //             eleKanaB.value = eleKanaB.value.slice(0, -1);
+        //         }
+        //     }
+        //     else if (last_key == "Enter") {
+        //         if (!composing) {
+        //             return;
+        //         }
+        //     }
+
+        //     if (push_keys.length > 0) {
+        //         if (composing) {
+        //             const temp = convertRomanToKana(push_keys.join(""));
+        //             eleKanaB.value = base + converter(temp?.split(""));
+        //         }
+        //         // if (iscomposing) {
+        //         //     const temp = convertRomanToKana(push_keys.join(""));
+        //         //     eleKanaB.value = base + converter(temp?.split(""));
+        //         // }
+        //         else {
+        //             eleKanaB.value = eleKanaB.value + converter(push_keys);
+        //             console.log("===== 　get base : %o", base);
+        //         }
+        //     }
+        // }
+
+        // function propReset() {
+        //     console.log("===== propReset =======================================================");
+        //     prop.last_key = "";
+        //     prop.last_keycode = -1;
+        //     prop.meta_key = false;
+        //     prop.ctrl_key = false;
+        //     prop.composing = false;
+        //     prop.iscomposing = false;
+        //     prop.push_keys = [];
+        //     prop.push_keys_composition = [];
+        //     prop.keydown = false;
+        //     prop.beforeinput = false;
+        //     prop.input = false;
+        //     base = eleKanaB.value;
+        // }
+
+        // function getDiffIndex(baseArray, checkArray) {
+        //     let idx = -1;
+        //     for (let i = 0; i < baseArray.length; i++) {
+        //         if (checkArray[i] != baseArray[i]) {
+        //             idx = i;
+        //             break;
+        //         }
+        //     }
+        //     return idx;
+        // }
+
+        // function check(curStr, nextStr) {
+        //     let res = false;
+
+        //     console.log("curStr : %o", curStr);
+        //     console.log("nextStr : %o", nextStr);
+
+        //     const curArray = curStr.split("");
+        //     const nextArray = nextStr.split("");
+
+        //     if (curArray.length == nextArray.length) {
+        //         const diffIndex = getDiffIndex(curArray, nextArray);
+        //         console.log("diffIndex : %o", diffIndex);
+        //         if (diffIndex == -1) {
+        //             return true;
+        //         }
+
+        //         const diffArray = nextArray.slice(diffIndex);
+        //         const isValid = diffArray.every((val) =>
+        //             hiraganaPattern.test(val)
+        //             || katakanaPattern.test(val)
+        //             || alphabetPattern.test(val)
+        //             || numberPattern.test(val)
+        //             || symbolPattern.test(val));
+        //         console.log("isValid : %o", isValid);
+
+        //         let isValid2 = true;
+        //         for (const temp of diffArray) {
+        //             if (hiraganaPattern.test(temp)
+        //                 || katakanaPattern.test(temp)
+        //                 || alphabetPattern.test(temp)
+        //                 || numberPattern.test(temp)
+        //                 || symbolPattern.test(temp)) {
+        //                 //
+        //             }
+        //             else {
+        //                 isValid2 = false;
+        //             }
+        //         }
+        //         console.log("isValid2 : %o", isValid2);
+        //         return isValid;
+        //     }
+        //     return false;
+        // }
+
+        function checkVal(e) {
+            tmp_input = e.target.value.split("");
+            if (!key_ptn.includes(press_key)) {
+                tmpArray = tmp_input;
+                if (tmpArray2 != "") {
+                    if (tmpArray.length > 0 && tmpArray3.length > 0) {
+                        for (var index in tmpArray) {
+                            if (tmpArray[index] != tmpArray3[index]) {
+                                diffs.push(tmpArray[index]);
+                            }
+                        }
+                    }
+                    eleKana.value = diffs.length > 0 ? tmpArray2 + converter(diffs) : tmpArray2 + converter(tmpArray);
+                } else {
+                    eleKana.value = converter(tmpArray);
+                }
+                stateClear(0);
+            }
+            if (key_ptn.includes(press_key)) {
+                tmpArray3 = tmp_input;
+                tmpArray2 = eleKana.value;
+                if (press_key == "Backspace" || press_key == "Delete") {
+                    if (eleKana.value.length > 0) {
+                        eleKana.value = eleKana.value.slice(0, -1);
+                    }
+                    tmpArray2 = tmpArray2.slice(0, -1);
+                }
+                stateClear(0);
+            }
+            diffs = [];
+        }
+        function stateClear(flag) {
+            if (flag == 0) {
+                if ((eleName.value == "" && eleKana.value != "") ||
+                    (eleName.value == "" && eleKana.value == "")) {
+                    eleKana.value = "";
+                    tmpArray = "";
+                    tmpArray2 = "";
+                    tmpArray3 = "";
+                    diffs = [];
+                }
+            } else if (flag == 1) {
+                if (eleName.value != "" && eleKana.value == "") {
+                    tmpArray2 = "";
+                    tmpArray3 = "";
+                }
+            }
+        }
+        function convertToKatakana(value) {
+            return value.replace(/[\u3041-\u3096]/g, function (match) {
+                var chr = match.charCodeAt(0) + 0x60;
+                return String.fromCharCode(chr);
+            });
+        }
+        function converter(value) {
+            var result = [];
+            for (var val of value) {
+                if (hiraganaPattern.test(val) || katakanaPattern.test(val) || alphabetPattern.test(val) ||
+                    numberPattern.test(val) || symbolPattern.test(val)) {
+                    result.push(convertToKatakana(val));
+                }
+            }
+            return result.join('');
+        }
+    }
+
+    const isg_adbtm_regex = {
+        "allHiragana": new RegExp("[\u3041-\u309E]"),
+        "allHiraganaKatakanaBar": new RegExp("[\u3041-\u309E\u30A1-\u30F6\u30fc]"),
+        "fullKatakana": new RegExp("[\u30A1-\u30F6]"),
+        "halfHyphen": new RegExp("[-]"),
+        "halfNum": new RegExp("[0-9]"),
+        "fullNumHyphenBar": new RegExp("[\uff10-\uff19\u2015\u30fc\uff0d]"),
+        "halfAlphabet": new RegExp("[a-zA-Z]"),
+        "space": new RegExp("[ \u3000]"),
+        "addressAccept": new RegExp("[\u3041-\u309E\u30A1-\u30F6 \u3000 0-9\uff10-\uff19\u2015\u30fc\uff0d]")
+    };
+
+    //ひらがな→カタカナの変換をする関数
+    function kanaTokatakana(str) {
+        try {
+            return str.replace(/[\\u3041-\\u3096]/g, function (match) {
+                var kana_char = match.charCodeAt(0) + 0x60;
+                return String.fromCharCode(kana_char);
+            });
+        } catch (e) { }
+    }
+
+    //半角記号、アルファベットを半角→全角変換する関数
+    function genHalfToFull(val) {
+        try {
+            return String(val).replace(/[!-~]/g, function (all) {
+                return String.fromCharCode(all.charCodeAt(0) + 0xFEE0);
+            });
+        } catch (e) { }
+    }
+
+    //数字を半角→全角変換する関数
+    function numHalfToFull(num) {
+        try {
+            return num.replace(/[0-9]/g, function (all) {
+                return String.fromCharCode(all.charCodeAt(0) + 0xFEE0);
+            });
+        } catch (e) { }
+    }
+
+    //文字の種類によって判断し、変換等を行う関数
+    function furiganaConvert(val) {
+        try {
+            var converted = "";
+            if (isg_adbtm_regex.halfHyphen.test(val)) {
+                //半角ハイフンの場合
+                converted = genHalfToFull(val);
+            } else if (isg_adbtm_regex.halfNum.test(val)) {
+                //数字の場合
+                converted = numHalfToFull(val);
+            } else if (isg_adbtm_regex.allHiragana.test(val)) {
+                //ひらがなの場合
+                converted = kanaTokatakana(val);
+            } else if (isg_adbtm_regex.space.test(val)) {
+                //スペースの場合は全角スペースを代入
+                converted = "\u3000";
+            } else if (isg_adbtm_regex.fullKatakana.test(val) || isg_adbtm_regex.fullNumHyphenBar.test(val)) {
+                //カタカナ、全角の数字,ハイフン,伸ばし棒の場合はそのまま格納
+                converted = val;
+            }
+            return converted;
+        } catch (e) { }
+    }
+
+    //フォームから離れた際のイベントリスナー用関数
+    function formBlur(val) {
+        try {
+            //半角ハイフン、半角アルファベット
+            if (isg_adbtm_regex.halfHyphen.test(val) || isg_adbtm_regex.halfAlphabet.test(val)) {
+                val = genHalfToFull(val);
+            }
+            //半角数字
+            if (isg_adbtm_regex.halfNum.test(val)) {
+                val = numHalfToFull(val);
+            }
+            //スペース
+            if (isg_adbtm_regex.space.test(val)) {
+                //半角スペースを全角に変換
+                val = val.replace(/ /g, '\u3000');
+            }
+            return val;
+        } catch (e) { }
+    }
+
+    function autokana2(element1, element2) {
+        const eleName = document.getElementById(element1);
+        const eleKana = document.getElementById(element2);
+
+        //フラグ用変数宣言
+        let isg_adbtm_doFlag_name1 = true;
+        let isg_adbtm_input_before_name1 = '';
+
+        // IME終了時のイベントリスナー
+        eleName.addEventListener('compositionend', function (event) {
+            try {
+                setTimeout(function () {
+                    isg_adbtm_input_before_name1 = '';
+                }, 50);
+            } catch (ex) { }
+        });
+
+        // 実行フラグの設定処理、キー押下時のイベントリスナー
+        eleName.addEventListener('keydown', function (event) {
+            try {
+                setTimeout(function () {
+                    if (event.code === 'Backspace') {
+                        var backChk = eleName.value;
+                        if (backChk != '') {
+                            if (backChk == 1) {
+                                //最後の一文字を消去した際を考慮、空の時と同じ処理をする
+                                eleKana.value = '';
+                                isg_adbtm_doFlag_name1 = true;
+                                isg_adbtm_input_before_name1 = '';
+                                //全削除していたら背景変更
+                                if (eleKana.value == '') {
+                                    eleKana.classList.remove('entered');
+                                }
+                            } else {
+                                isg_adbtm_doFlag_name1 = false;
+                                //フリガナから一文字削除
+                                eleKana.value = eleKana.value.slice(0, -1);
+                                //全削除していたら背景変更
+                                if (eleKana.value == '') {
+                                    eleKana.classList.remove('entered');
+                                }
+                            }
+                        } else {
+                            //欄が空なら全削除
+                            eleKana.value = '';
+                            isg_adbtm_doFlag_name1 = true;
+                            isg_adbtm_input_before_name1 = '';
+                            eleKana.classList.remove('entered');
+                        }
+                    } else if (event.code === 'Delete') {
+                        if (eleName.value == '') {
+                            //欄が空なら全削除
+                            eleKana.value = '';
+                            isg_adbtm_doFlag_name1 = true;
+                            isg_adbtm_input_before_name1 = '';
+                            eleKana.classList.remove('entered');
+                        }
+                    } else if (event.code === 'Enter') {
+                        isg_adbtm_doFlag_name1 = false;
+                    } else if (event.key === 'Process' && (event.code === 'Space' || event.code === 'Convert' || event.code === 'Tab' || /^Arrow/.test(event.code) || /^F[6-9]$/.test(event.code) || event.code === 'F10')) {
+                        //PCのIMEで変換中は処理しないようフラグ設定
+                        isg_adbtm_doFlag_name1 = false;
+                    } else {
+                        isg_adbtm_doFlag_name1 = true;
+                    }
+                }, 10);
+            } catch (ex) { }
+        });
+
+        //入力値に対してのイベントリスナー、IMEが更新されたときのみ処理
+        eleName.addEventListener('compositionupdate', function (event) {
+            try {
+                //keydownのイベントによるフラグ設定処理が終わるのを待つ
+                setTimeout(function () {
+                    //入力した値を取得
+                    var addInput = event.data;
+                    //最後の一文字を取得 一文字しかない場合はそのまま取得
+                    if (addInput.length > 1) {
+                        var val = addInput.slice(-1);
+                    } else {
+                        var val = addInput;
+                    }
+                    //入力内容が変わっていたら処理
+                    if (addInput != isg_adbtm_input_before_name1) {
+                        //変換を行う対象で実行フラグがあれば処理
+                        if (isg_adbtm_regex.allHiraganaKatakanaBar.test(val) && isg_adbtm_doFlag_name1) {
+                            //スマホでの文字変換を考慮、1文字目の入力or最後以外の文字が一緒かで処理分け
+                            if (isg_adbtm_input_before_name1.length == 0 || addInput.slice(0, -1) != isg_adbtm_input_before_name1.slice(0, -1)) {
+                                if (addInput.slice(0, -1) == isg_adbtm_input_before_name1) {
+                                    //入力されたのが1文字だけならフリガナへ追加
+                                    var converted = furiganaConvert(val);
+                                    //入力値に対し変換結果が返ってきたらフリガナ欄へ追加
+                                    // if(converted != \"\"){
+                                    if (converted != "") {
+                                        eleKana.value += converted;
+                                        //欄の背景変更のための処理
+                                        if (!eleKana.classList.contains('entered')) {
+                                            eleKana.classList.add('entered');
+                                        }
+                                    }
+                                } else {
+                                    //2文字フリガナへ追加、小文字込みの入力を考慮
+                                    var converted = furiganaConvert(addInput.slice(-2));
+                                    //入力値に対し変換結果が返ってきたらフリガナ欄へ追加
+                                    // if(converted != \"\"){
+                                    if (converted != "") {
+                                        //2文字の内1文字目が余計な文字の可能性を考慮し、検査
+                                        if (!isg_adbtm_regex.allHiraganaKatakanaBar.test(converted[0])) {
+                                            //余計な文字があったら、最後の文字だけに変換
+                                            converted = converted.slice(-1);
+                                        }
+                                        eleKana.value += converted;
+                                        //欄の背景変更のための処理
+                                        if (!eleKana.classList.contains('entered')) {
+                                            eleKana.classList.add('entered');
+                                        }
+                                    }
+                                }
+                            } else {
+                                //入力値に対し変換結果が返ってきたらフリガナ欄へ追加、最後の1文字を入れ替える
+                                var converted = furiganaConvert(val);
+                                // if(converted != \"\"){
+                                if (converted != "") {
+                                    if (eleKana.value != '') {
+                                        eleKana.value = eleKana.value.slice(0, -1) + converted;
+                                    } else {
+                                        eleKana.value += converted;
+                                    }
+                                    //欄の背景変更のための処理
+                                    if (!eleKana.classList.contains('entered')) {
+                                        eleKana.classList.add('entered');
+                                    }
+                                }
+                            }
+                            //次の処理用に変数へ代入
+                            isg_adbtm_input_before_name1 = addInput;
+                        }
+                    }
+                    //一回実行したらフラグを落とす
+                    isg_adbtm_doFlag_name1 = false;
+                }, 20);
+            } catch (ex) { }
+        });
+}
+    </script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <input id="kanji_1" type="text">
+        </div>
+        <div>
+            <input id="kana_1" type="text">
+        </div>
+        <div>
+            <input id="kana_1b" type="text">
+        </div>
+        <div>
+            <input id="kana_1c" type="text">
+        </div>
+        <div>
+            <input id="kanji_2" type="text">
+        </div>
+        <div>
+            <input id="kana_2" type="text">
+        </div>
+        <div>
+            <input id="kana_2b" type="text">
+        </div>
+        <div>
+            <input id="kana_2c" type="text">
+        </div>
+        <div id="message">
+
+        </div>
+    </form>
+    <div class="c1-1 req">
+        <select name="" id="test1">
+        </select>
+        <div class="c2-1 req">
+            <select name="" id="test2">
+            </select>
+        </div>
+        <div class="c3-1">
+            <div class="c3-2 req">
+                <select name="" id="test3">
+                </select>
+            </div>
+        </div>
+        <div class="c4-1 req">
+            <div class="c4-2">
+                <select name="" id="test4">
+                </select>
+            </div>
+        </div>
+        <div class="c5-1 req">
+            <div class="c5-2 req">
+                <select name="" id="test5">
+                </select>
+            </div>
+        </div>
+        <div class="c6-1">
+            <select name="" id="test6">
+            </select>
+        </div>
+    </div>
+</body>
+
+</html>
